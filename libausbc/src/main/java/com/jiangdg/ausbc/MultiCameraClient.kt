@@ -6,6 +6,7 @@ import android.graphics.SurfaceTexture
 import android.hardware.usb.UsbDevice
 import android.os.*
 import android.view.Surface
+import androidx.annotation.RequiresApi
 import com.jiangdg.ausbc.callback.*
 import com.jiangdg.ausbc.camera.bean.CameraRequest
 import com.jiangdg.ausbc.camera.bean.PreviewSize
@@ -58,7 +59,9 @@ class MultiCameraClient(ctx: Context, callback: IDeviceConnectCallBack?) {
              *
              * @param device usb device info,see [UsbDevice]
              */
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
             override fun onAttach(device: UsbDevice?) {
+                if(device!!.productName.equals("USB Camera")){
                 if (Utils.debugCamera) {
                     Logger.i(TAG, "attach device name/pid/vid:${device?.deviceName}&${device?.productId}&${device?.vendorId} ")
                 }
@@ -69,6 +72,7 @@ class MultiCameraClient(ctx: Context, callback: IDeviceConnectCallBack?) {
                 mMainHandler.post {
                     callback?.onAttachDev(device)
                 }
+                    }
             }
 
             /**

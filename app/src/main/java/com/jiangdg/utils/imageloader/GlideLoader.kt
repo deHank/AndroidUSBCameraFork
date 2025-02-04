@@ -187,7 +187,7 @@ class GlideLoader<T>(target: T) : ILoader<ImageView> {
                 .centerCrop()
                 .load(url)
                 .listener(object : RequestListener<Bitmap> {
-                    override fun onLoadFailed(
+                     fun onaLoadFailed(
                         e: GlideException?,
                         model: Any?,
                         target: Target<Bitmap>?,
@@ -197,7 +197,7 @@ class GlideLoader<T>(target: T) : ILoader<ImageView> {
                         return true
                     }
 
-                    override fun onResourceReady(
+                     fun onaResourceReady(
                         resource: Bitmap?,
                         model: Any?,
                         target: Target<Bitmap>?,
@@ -206,6 +206,25 @@ class GlideLoader<T>(target: T) : ILoader<ImageView> {
                     ): Boolean {
                         listener.onLoadedSuccess(resource)
                         return true
+                    }
+
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Bitmap>,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        model: Any,
+                        target: Target<Bitmap>?,
+                        dataSource: DataSource,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        TODO("Not yet implemented")
                     }
 
                 })

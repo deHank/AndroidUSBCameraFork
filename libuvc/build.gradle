@@ -14,7 +14,12 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
 		targetSdkVersion rootProject.ext.versionTarget
-    }
+		externalNativeBuild {
+			ndkBuild {
+				cppFlags ''
+			}
+		}
+	}
 
 	lintOptions {
 		checkReleaseBuilds false
@@ -31,6 +36,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+	externalNativeBuild {
+		ndkBuild {
+
+			path file('src/main/jni/Android.mk')
+		}
+	}
 }
 
 tasks.withType(JavaCompile) {
